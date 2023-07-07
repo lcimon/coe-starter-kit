@@ -19,8 +19,10 @@ jobs:
       uses: tgymnich/fork-sync@v1.8
       with:
         owner: microsoft
-        base: main
         head: main
+        base: main
+        token: ${{secrets.TOKEN}}
+        auto_approve: true
 
   deploy-coe:
     needs: sync-fork
