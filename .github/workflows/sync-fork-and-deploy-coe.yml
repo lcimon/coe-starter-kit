@@ -21,6 +21,7 @@ jobs:
         owner: microsoft
         head: main
         base: main
+        token: ${{ secrets.TOKEN }}
 
   deploy-coe:
     needs: sync-fork
