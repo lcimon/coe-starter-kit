@@ -44,9 +44,8 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v0
         with:
           environment-url: ${{github.event.inputs.environment_url}}
-          app-id: ${{secrets.CLIENT_ID}}
-          client-secret: ${{ secrets.PowerPlatformSPN }}
-          tenant-id: ${{secrets.TENANT_ID}}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           solution-file: ${{ github.event.repository.name}}/${{ github.event.inputs.solution_name }}.zip
           force-overwrite: true
           publish-changes: true
