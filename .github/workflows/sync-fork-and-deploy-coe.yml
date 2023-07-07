@@ -16,12 +16,12 @@ jobs:
     
     steps:
     - name: Sync to Upstream
+      if: true == false
       uses: tgymnich/fork-sync@v1.8
       with:
         owner: microsoft
         head: main
         base: main
-        token: ${{ secrets.TOKEN }}
 
   deploy-coe:
     needs: sync-fork
