@@ -1,0 +1,42 @@
+name: sync-fork-and-deploy-coe
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # every monday
+  workflow_dispatch: # on button click
+
+env:
+#edit your values here
+  ENVIRONMENT_URL: https://org3213fbb2.crm.dynamics.com
+  USERNAME: loic.cimon@loiccimon.com
+  
+jobs:
+  sync-fork:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Sync to Upstream
+      uses: tgymnich/fork-sync@v1.8
+      with:
+        token: ${{ secrets.PERSONAL_TOKEN }}
+        owner: microsoft
+        base: main
+        head: main
+
+    - name: Setup Power Apps CLI
+      uses: microsoft/powerplatform-actions/setup-powerplatform-cli@v1
+
+  deploy-coe:
+    needs: sync-fork
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+        
+    - name: Deploy CenterofExcellenceCoreComponents
+      uses: ./.github/workflows/deploy-unmanaged-application.yml
+      with:
+        solution_name: CenterofExcellenceCoreComponents
+        environment_url: ${{env.ENVIRONMENT_URL}}
