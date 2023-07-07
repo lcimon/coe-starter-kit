@@ -44,7 +44,7 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v0
         with:
           environment-url: ${{github.event.inputs.environment_url}}
-          username: ${{ secrets.USERNAME }}
+          username: ${{ env.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           solution-file: ${{ github.event.repository.name}}/${{ github.event.inputs.solution_name }}.zip
           force-overwrite: true
