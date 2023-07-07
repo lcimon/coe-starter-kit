@@ -25,6 +25,15 @@ on:
        # description: "solution outbound folder"
         #required: true
         #default: out/stage
+      username:
+        description: "username to connect"
+        type: string
+        required: true
+    secrets:
+      password:
+        description: "username to connect"
+        required: true
+        
 jobs:
     pack-umanaged-solution-import:
       runs-on: ubuntu-latest
