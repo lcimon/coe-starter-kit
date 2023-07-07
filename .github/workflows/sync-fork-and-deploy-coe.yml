@@ -23,9 +23,6 @@ jobs:
         base: main
         head: main
 
-    - name: Setup Power Apps CLI
-      uses: microsoft/powerplatform-actions/setup-powerplatform-cli@v1
-
   deploy-coe:
     needs: sync-fork
     runs-on: ubuntu-latest
