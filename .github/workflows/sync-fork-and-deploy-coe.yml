@@ -22,7 +22,6 @@ jobs:
         head: main
         base: main
         token: ${{secrets.TOKEN}}
-        auto_approve: true
 
   deploy-coe:
     needs: sync-fork
