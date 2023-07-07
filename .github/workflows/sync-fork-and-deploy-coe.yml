@@ -4,11 +4,7 @@ on:
   schedule:
     - cron: '0 0 * * 1' # every monday
   workflow_dispatch: # on button click
-
-env:
-  ENVIRONMENT_URL: https://org3213fbb2.crm.dynamics.com
-  USERNAME: loic.cimon@loiccimon.com
-  
+      
 jobs:
   sync-fork:
     runs-on: ubuntu-latest
@@ -21,15 +17,14 @@ jobs:
         owner: microsoft
         head: main
         base: main
-  
-  sample-job-2:
-    runs-on: ubuntu-latest
-    steps:
-        - run: echo "${{ env.ENVIRONMENT_URL }}"
 
   deploy-coe:
     needs: sync-fork
     uses: ./.github/workflows/deploy-unmanaged-application.yml
+
     with:
       solution_name: CenterofExcellenceCoreComponents
-      environment_url: ${{ env.ENVIRONMENT_URL }}
+      environment_url: https://org3213fbb2.crm.dynamics.com
+      username: loic.cimon@loiccimon.com
+    secrets:
+      password: ${{ secrets.PASSWORD }}
